@@ -1,6 +1,9 @@
-![Banner](banner.png)
+![Intro](intro-banner.png)
 
 # Cape files for Mousescape
 
-This repository contains `cape` files for [Mousecape](https://github.com/alexzielenski/Mousecape).
+![Banner](banner.png)
 
+![Scene](scene.svg)
+
+This repository contains `cape` files for [Mousecape](https://github.com/alexzielenski/Mousecape).

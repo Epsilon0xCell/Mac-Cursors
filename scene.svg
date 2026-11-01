@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" role="img" aria-label="A pointer travelling a red route through a city quarter at dusk">
+<defs><linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a888"/><stop offset="1" stop-color="#6e5a78"/></linearGradient></defs>
+<rect width="1200" height="70" fill="url(#dusk)"/>
+<g fill="#3c3644"><path d="M60 70 V30 h50 v40 M200 70 V22 h36 v48 M1010 70 V26 h44 v44"/><path d="M880 70 L892 14 L904 70"/></g>
+<g fill="#efe9dc"><rect x="300" y="40" width="7" height="7"><animate attributeName="opacity" values="0;1" dur="9s" repeatCount="indefinite"/></rect><rect x="700" y="48" width="7" height="7"><animate attributeName="opacity" values="0;1" dur="13s" repeatCount="indefinite"/></rect></g>
+<rect y="70" width="1200" height="140" fill="#605c60"/>
+<g fill="#7a726e"><rect x="40" y="86" width="300" height="110"/><rect x="420" y="86" width="330" height="110"/><rect x="830" y="86" width="330" height="110"/></g>
+<path id="route" d="M20 226 H300 V110 H560 V196 H820 V110 H1180" fill="none" stroke="#ce2c28" stroke-width="4"/>
+<circle cx="560" cy="150" r="16" fill="#5c82a0" stroke="#e8e2d2" stroke-width="3"/>
+<g><path d="M0 0 L0 22 L6 16 L9 25 L13 23 L10 15 L17 15 Z" fill="#f6f4ee" stroke="#222"><animateMotion dur="18s" repeatCount="indefinite" path="M20 226 H300 V110 H560 V196 H820 V110 H1180"/></path></g>
+<rect y="226" width="1200" height="34" fill="#4c484c"/>
+<g fill="#6a6464"><ellipse cx="80" cy="244" rx="30" ry="8"/><ellipse cx="240" cy="244" rx="30" ry="8"/><ellipse cx="420" cy="244" rx="30" ry="8"/><ellipse cx="620" cy="244" rx="30" ry="8"/><ellipse cx="840" cy="244" rx="30" ry="8"/><ellipse cx="1060" cy="244" rx="30" ry="8"/></g>
+</svg>
