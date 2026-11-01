@@ -3,165 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mac Cursors: what it is, how it runs, where it stops</title>
-<meta name="description" content="This repository contains cape files for Mousecape.">
+<title>Mac-Cursors: cape files for Mousecape, on the dispatch wall</title>
+<meta name="description" content="Mac-Cursors is a collection of cape files for Mousecape, the Mac cursor editor. Pick a look, import the cape into Mousecape, and apply it.">
 <style>
-:root {
-  --bg: #0c1016; --panel: #141a24; --ink: #e8ecf0;
-  --mut: #1b2330;
-  --acc: #d8844a; --acc2: #5eb2a8;
-  --line: #141a24;
-}
+@font-face { font-family: Archivo; src: url(fonts/Archivo.ttf); }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink);
-  font-family: 'Trebuchet MS', sans-serif; line-height: 1.55; }
-code, pre, .mono { font-family: 'Courier New', monospace; }
-a { color: var(--acc2); }
-.hero { padding: 3rem 6vw 1rem; }
-.hero img.banner { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; }
-.logo { width: 92px; height: 92px; border-radius: 18px;
-  border: 1px solid var(--line); }
-h1 { font-size: 2.4rem; margin: 0.4em 0 0.1em; }
-h2 { border-bottom: 2px solid var(--acc); padding-bottom: 0.2em;
-  margin-top: 2em; }
-.lede { font-size: 1.15rem; max-width: 62ch; }
-main { padding: 0 6vw 3rem; max-width: 1180px; margin: 0 auto; }
-.grid { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--panel); border: 1px solid var(--line);
-  border-radius: 12px; padding: 1rem 1.2rem; }
-.card.pop { animation: rise 0.7s ease both; }
-@keyframes rise { from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: none; } }
-pre.code { background: #101014; color: #e8e6df; padding: 1rem 1.2rem;
-  border-radius: 12px; overflow-x: auto; font-size: 0.86rem;
-  border-left: 5px solid var(--acc); }
-table { border-collapse: collapse; width: 100%; }
-td, th { border-bottom: 1px solid var(--line); padding: 0.45rem 0.6rem;
-  text-align: left; }
-.shots { display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line);
-  border-radius: 10px; background: #f4f1e8; }
-footer { padding: 2rem 6vw; border-top: 1px solid var(--line);
-  color: var(--mut); }
-.rail { display: flex; gap: 1.2rem; align-items: flex-start; }
-.rail nav { position: sticky; top: 1rem; min-width: 180px; }
-@media (max-width: 760px) { .rail { flex-direction: column; }
-  .rail nav { position: static; } }
-@media (prefers-reduced-motion: reduce) {
-  .card.pop { animation: none; } * { scroll-behavior: auto; } }
+body { margin: 0; background: #606064; color: #26242a; font-family: Archivo, sans-serif; line-height: 1.55; }
+.board { max-width: 1180px; margin: 0 auto; padding: 28px 20px 50px; }
+header img.intro { width: 100%; height: auto; display: block; border: 6px solid #3c3a3e; }
+h1 { font-size: 2.1rem; margin: 20px 0 2px; transform: rotate(-.6deg); color: #f2ede2; }
+h1 .red { color: #ff6b64; }
+.clock { font-family: ui-monospace, Menlo, monospace; background: #26242a; color: #ffcf6e; display: inline-block; padding: 4px 14px; letter-spacing: .2em; }
+h2 { background: #d8ba8c; display: inline-block; padding: 8px 42px 12px 16px; clip-path: polygon(0 0, 100% 0, 98% 78%, 92% 100%, 84% 80%, 76% 100%, 66% 80%, 56% 100%, 46% 80%, 36% 100%, 26% 80%, 16% 100%, 8% 80%, 0 96%); color: #a8231f; letter-spacing: .06em; }
+.lede { color: #f2ede2; max-width: 62ch; font-size: 1.1rem; }
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 16px; margin: 18px 0 8px; }
+.mount { background: #d8ba8c; padding: 10px 10px 0; position: relative; box-shadow: 2px 3px 0 rgba(0,0,0,.3); }
+.mount .field { background: #fff; min-height: 92px; display: flex; align-items: center; justify-content: center; gap: 22px; }
+.ptr { font-size: 26px; color: #26242a; display: inline-block; transform: rotate(-38deg); }
+.ptr.big { font-size: 52px; }
+.mount .name { font-weight: 700; padding: 7px 2px 2px; letter-spacing: .02em; }
+.slip { display: block; background: #e6cda2; border-top: 2px dashed #8a744c; border-left: 6px dotted #8a744c; color: #7c1d1a; padding: 7px 8px; margin: 6px -10px 0; text-decoration: none; position: relative; }
+.slip:hover { transform: translateY(-2px) rotate(.4deg); }
+.slip:active { box-shadow: inset 0 0 0 3px rgba(112,88,160,.55); border-radius: 50% 46% 52% 48%/58% 52% 48% 42%; }
+.slip:focus-visible { outline: 3px solid #ce2c28; outline-offset: 2px; }
+.drop { font-family: ui-monospace, Menlo, monospace; position: absolute; top: 4px; right: 8px; color: #7058a0; font-size: .8rem; }
+.panel { background: #d8ba8c; padding: 18px 22px; margin: 22px 0; }
+.chalk { background: #4c484c; color: #f4efdd; padding: 18px 22px; margin: 22px 0; }
+.route { border: 0; height: 14px; background: linear-gradient(90deg, #ce2c28 0 46%, transparent 46%), linear-gradient(#ce2c28, #ce2c28); background-size: 100% 3px, 3px 100%; background-position: 0 0, 46% 0; background-repeat: no-repeat; margin: 26px 0 6px; }
+a.inline { color: #ffd9d6; }
+a.inline::before { content: "⌐ "; color: #ce2c28; font-weight: 700; }
+.panel a { color: #7c1d1a; }
+footer { color: #f2ede2; border-top: 3px solid #ce2c28; padding-top: 14px; }
+.stamp { display: inline-block; border: 2px solid #7058a0; color: #cbbcf2; border-radius: 50%; padding: 2px 10px; transform: rotate(-8deg); margin-left: 10px; }
 </style>
 </head>
-<body class="layout-poster">
-<!-- This page exists for Mac-Cursors alone: the layout (poster),
-     the colors, and the type were picked for this project, not
-     shared with the other project pages. The code block below is
-     copied from the file it names, line for line. If it looks
-     plain, that is because the project is plain, and I would
-     rather the page match the project than dress it up. The one
-     thing I will not do here is oversell: what this project does
-     not do is stated on the page, not hidden from it. -->
-<header class="hero">
-  <img class="logo" src="assets/logo.png" alt="Mac Cursors logo">
-  <img class="banner" src="assets/banner.png" alt="">
-  <h1>Mac Cursors</h1>
-  <p class="mono"><a href="https://github.com/Epsilon0xCell/Mac-Cursors">github.com/Epsilon0xCell/Mac-Cursors</a></p>
+<body>
+<div class="board">
+<header>
+  <img class="intro" src="intro-banner.png" alt="An alley at dusk seen from a rider's height: cobbles, a puddle reflecting an awning and the lit avenue beyond, a cat on a warm vent, rooftops and a spire">
+  <h1>Mac<span class="red">-</span>Cursors</h1>
+  <p><span class="clock">SHIFT 17:42</span></p>
+  <p class="lede">Mac-Cursors is a collection of cape files for <a class="inline" href="https://github.com/alexzielenski/Mousecape">Mousecape</a>, the Mac cursor editor, gathered as ready to import designs that restyle the pointer across the system. Each design ships as a cape file; a visitor picks a look, imports the cape into Mousecape, and applies it.</p>
 </header>
-
-<main>
-  <section class="rail">
-    <nav aria-label="on this page">
-      <p class="mono"><a href="#run">Run it</a><br>
-      <a href="#files">The files</a><br>
-      <a href="#sheets">The sheets</a><br>
-      <a href="https://github.com/Epsilon0xCell/Mac-Cursors">The repo</a></p>
-    </nav>
-    <div>
-      <p class="lede">This repository contains cape files for Mousecape.</p>
-      <div class="grid">
-        <div class="card pop"><h3>What it is</h3>
-          <p>Mac Cursors: 33 files, 4 counted
-          lines across Markdown 4. One job, done in the
-          open, in files you can read.</p></div>
-        <div class="card pop"><h3>The biggest piece</h3>
-          <p><code>README.md</code> carries the most
-          lines. If the project grows, that file is where the growth
-          lands first, for better or worse.</p></div>
-        <div class="card pop"><h3>The honest gap</h3>
-          <p>No test files yet. That is the honest gap, and the roadmap in the visuals folder says what the first one should cover.</p></div>
-      </div>
-      <section id="run">
-        <h2>Run it</h2>
-        <p>The repo README has the exact commands for this one. The
-        shape is the shape for most of my projects: clone it, read the
-        top file first so you know what will happen, then run it on
-        something you do not mind breaking.</p>
-        <p class="mono">$ git clone https://github.com/Epsilon0xCell/Mac-Cursors.git<br>$ cd Mac-Cursors</p>
-      </section>
-      
-  <section aria-label="real code">
-    <h2>The code, as it sits in the repo</h2>
-    <p>From <code>capes/Breeze.cape</code>, line 1 on. I did
-    not tidy it for the page. What you see is what the file has.</p>
-    <pre class="code"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
-&lt;plist version=&quot;1.0&quot;&gt;
-&lt;dict&gt;
-	&lt;key&gt;Author&lt;/key&gt;
-	&lt;string&gt;dqixol&lt;/string&gt;
-	&lt;key&gt;CapeName&lt;/key&gt;
-	&lt;string&gt;test&lt;/string&gt;
-	&lt;key&gt;CapeVersion&lt;/key&gt;
-	&lt;real&gt;1&lt;/real&gt;
-	&lt;key&gt;Cloud&lt;/key&gt;
-	&lt;false/&gt;
-	&lt;key&gt;Cursors&lt;/key&gt;
-	&lt;dict&gt;
-		&lt;key&gt;com.apple.coregraphics.Alias&lt;/key&gt;
-		&lt;dict&gt;
-			&lt;key&gt;FrameCount&lt;/key&gt;
-			&lt;integer&gt;1&lt;/integer&gt;
-			&lt;key&gt;FrameDuration&lt;/key&gt;
-			&lt;real&gt;1&lt;/real&gt;
-			&lt;key&gt;HotSpotX&lt;/key&gt;
-			&lt;real&gt;3.5&lt;/real&gt;</code></pre>
-  </section>
-      <section id="files">
-        <h2>The files that matter</h2>
-        <table><tr><th>File</th><th>Lines</th></tr>
-        <tr><td><code>README.md</code></td><td>4</td></tr>
-        <tr><td><code>capes/Breeze.cape</code></td><td>0</td></tr>
-        <tr><td><code>capes/Luxus3GoldDarkPlate.cape</code></td><td>0</td></tr>
-        <tr><td><code>capes/Luxus3Gold.cape</code></td><td>0</td></tr>
-        <tr><td><code>capes/Luxus3.cape</code></td><td>0</td></tr>
-        <tr><td><code>capes/Blau.cape</code></td><td>0</td></tr>
-        </table>
-        <p>Names doing the work: <span class="mono">no named functions in the snapshot</span>.</p>
-      </section>
-      <section id="sheets">
-        <h2>Drawn by hand</h2>
-        <p>I sketch my projects on notebook paper so I have to
-        understand them well enough to draw them. The full set,
-        with the counts and how they were counted, is the
-        <a href="https://github.com/Epsilon0xCell/Mac-Cursors/tree/main/Mac-Cursors-Visuals">Mac-Cursors-Visuals</a>
-        folder in the repo. Nothing is drawn over the binder holes.
-        That is a rule, not a style.</p>
-        <div class="shots">
-          <img src="assets/architecture.png" alt="Hand drawn architecture sheet for Mac Cursors">
-          <img src="assets/flowchart.png" alt="Hand drawn flowchart sheet for Mac Cursors">
-          <img src="assets/product-map.png" alt="Hand drawn product map sheet for Mac Cursors">
-        </div>
-      </section>
-    </div>
-  </section>
-</main>
+<hr class="route">
+<section>
+  <h2>First board: the collection</h2>
+  <p style="color:#f2ede2">Every design in the repository, pinned as a delivery job. The slip on each card leads to that cape file in the repository.</p>
+  <div class="wall">
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">BigHero6</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/BigHero6.cape">Take the slip: BigHero6.cape</a><div class="drop">DROP 01</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Blau</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Blau.cape">Take the slip: Blau.cape</a><div class="drop">DROP 02</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Blau2</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Blau2.cape">Take the slip: Blau2.cape</a><div class="drop">DROP 03</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Breeze</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Breeze.cape">Take the slip: Breeze.cape</a><div class="drop">DROP 04</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Grove</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Grove.cape">Take the slip: Grove.cape</a><div class="drop">DROP 05</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Haand</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Haand.cape">Take the slip: Haand.cape</a><div class="drop">DROP 06</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Ignite</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Ignite.cape">Take the slip: Ignite.cape</a><div class="drop">DROP 07</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Luxus3</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Luxus3.cape">Take the slip: Luxus3.cape</a><div class="drop">DROP 08</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Luxus3Gold</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Luxus3Gold.cape">Take the slip: Luxus3Gold.cape</a><div class="drop">DROP 09</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Luxus3GoldDarkPlate</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Luxus3GoldDarkPlate.cape">Take the slip: Luxus3GoldDarkPlate.cape</a><div class="drop">DROP 10</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Memori</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Memori.cape">Take the slip: Memori.cape</a><div class="drop">DROP 11</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">MetroModern</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/MetroModern.cape">Take the slip: MetroModern.cape</a><div class="drop">DROP 12</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Mode</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Mode.cape">Take the slip: Mode.cape</a><div class="drop">DROP 13</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Mode2</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Mode2.cape">Take the slip: Mode2.cape</a><div class="drop">DROP 14</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">See</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/See.cape">Take the slip: See.cape</a><div class="drop">DROP 15</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Tone</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Tone.cape">Take the slip: Tone.cape</a><div class="drop">DROP 16</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Blue</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Blue.cape">Take the slip: Unity2016Blue.cape</a><div class="drop">DROP 17</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Bright</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Bright.cape">Take the slip: Unity2016Bright.cape</a><div class="drop">DROP 18</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Dark</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Dark.cape">Take the slip: Unity2016Dark.cape</a><div class="drop">DROP 19</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Green</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Green.cape">Take the slip: Unity2016Green.cape</a><div class="drop">DROP 20</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Orange</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Orange.cape">Take the slip: Unity2016Orange.cape</a><div class="drop">DROP 21</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Purple</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Purple.cape">Take the slip: Unity2016Purple.cape</a><div class="drop">DROP 22</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">Unity2016Red</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/Unity2016Red.cape">Take the slip: Unity2016Red.cape</a><div class="drop">DROP 23</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">a0x</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/a0x.cape">Take the slip: a0x.cape</a><div class="drop">DROP 24</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">appreciate</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/appreciate.cape">Take the slip: appreciate.cape</a><div class="drop">DROP 25</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">ashenx</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/ashenx.cape">Take the slip: ashenx.cape</a><div class="drop">DROP 26</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">ashenxdarkwregulararrow</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/ashenxdarkwregulararrow.cape">Take the slip: ashenxdarkwregulararrow.cape</a><div class="drop">DROP 27</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">ashenxwregulararrow</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/ashenxwregulararrow.cape">Take the slip: ashenxwregulararrow.cape</a><div class="drop">DROP 28</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">futuretech</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/futuretech.cape">Take the slip: futuretech.cape</a><div class="drop">DROP 29</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">local.allan.Orange</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/local.allan.Orange.cape">Take the slip: local.allan.Orange.cape</a><div class="drop">DROP 30</div></article>
+<article class="mount"><div class="field"><span class="ptr">&#10148;</span><span class="ptr big">&#10148;</span></div><div class="name">mini</div><a class="slip" href="https://github.com/Epsilon0xCell/Mac-Cursors/blob/master/capes/mini.cape">Take the slip: mini.cape</a><div class="drop">DROP 31</div></article>
+  </div>
+</section>
+<hr class="route">
+<section class="panel">
+  <h2 style="background:none;padding:0;clip-path:none">Second board: importing</h2>
+  <ol>
+    <li>Install Mousecape.</li>
+    <li>Open the cape file with Mousecape, or drag the file into its library window.</li>
+    <li>Apply the design from the library so the new pointer takes over.</li>
+  </ol>
+  <p>Reverting is done inside Mousecape by reapplying the stock design. A cape changes appearance only, never pointer behaviour, tracking speed, or click settings.</p>
+</section>
+<section class="chalk">
+  <h2 style="background:none;padding:0;clip-path:none;color:#f4efdd">Third board: choosing, chalked up</h2>
+  <p>High contrast pointers for bright rooms and projectors. Larger designs for large displays. Quiet designs for screen recording. Check the wait state before committing, since it is the one state a user stares at longest.</p>
+</section>
 <footer>
-  <p>Mac Cursors is one of my projects. This page was written
-  from the repo itself on 2026-10-30: the counts are the
-  repo's counts, the code is the repo's code, and the gaps are the
-  repo's gaps.</p>
+  <p>Run sheet: the collection <span class="stamp">done</span> importing <span class="stamp">done</span> choosing <span class="stamp">done</span></p>
+  <p><a class="inline" href="https://github.com/Epsilon0xCell/Mac-Cursors">github.com/Epsilon0xCell/Mac-Cursors</a></p>
 </footer>
+</div>
 </body>
 </html>
